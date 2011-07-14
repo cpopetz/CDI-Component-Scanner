@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>net.ftlines.cdigen</groupId>
+	<artifactId>cdigen-processor</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	
+	 <licenses>
+	  <license>
+	   <name>The Apache Software License, Version 2.0</name>
+	   <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+	   <distribution>repo</distribution>
+	  </license>
+	 </licenses>
+	
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>AAU Release Repository</name>
+			<url>https://repo.aws.42lines.net/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>AAU Snapshot Repository</name>
+			<url>https://repo.aws.42lines.net/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<compilerArgument>-proc:none</compilerArgument>
+				</configuration>
+				<version>2.0.2</version>
+			</plugin>
+			<plugin>
+				<groupId>com.mycila.maven-license-plugin</groupId>
+				<artifactId>maven-license-plugin</artifactId>
+				<configuration>
+					<header>license-header.txt</header>
+					<failIfMissing>true</failIfMissing>
+					<excludes>
+						<exclude>license-header.txt</exclude>
+						<exclude>build-number.txt</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.bsc.maven</groupId>
+					<artifactId>maven-processor-plugin</artifactId>			
+					<version>2.0.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>1.5</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>mc-release</id>
+			<name>Local Maven repository of releases</name>
+			<url>http://mc-repo.googlecode.com/svn/maven2/releases</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</pluginRepository>
+		<pluginRepository>
+			<!-- needed until processor is synced to central Issue 23 -->
+			<id>maven-annotation-plugin</id>
+			<name>maven-annotation-plugin repo</name>
+			<url>http://maven-annotation-plugin.googlecode.com/svn/trunk/mavenrepo</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
+
+
+
+</project>
